@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Education</title>
+</head>
+<body>
+
+<form th:action="@{/posteducation}" th:object="${education}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
+    <label>Title: </label><input type="text" th:field="*{title}"/>
+
+    <span th:if="${#fields.hasErrors('level')}" th:errors="*{level}"></span><br/>
+    <label>Level: </label><input type="text" th:field="*{level}"/>
+
+
+
+<br />
+    <input type="submit" value="Submit Education info"/>
+</form>
+<br />
+<a th:href="@{/addexperience}">Continue to Experience</a>
+</body>
+</html>

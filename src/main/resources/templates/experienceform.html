@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Experience</title>
+</head>
+<body>
+
+<form th:action="@{/postexperience}" th:object="${experience}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <span th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span><br/>
+    <label>Company: </label><input type="text" th:field="*{company}"/>
+
+    <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span><br/>
+    <label>Position: </label><input type="text" th:field="*{position}"/>
+
+    <br />
+    <input type="submit" value="Submit Experience info"/>
+</form>
+
+<br />
+<a th:href="@{/addskill}">Continue to Skills</a>
+</body>
+</html>
