@@ -1,13 +1,7 @@
 package com.riri.displayresume.controller;
 
-import com.riri.displayresume.model.Education;
-import com.riri.displayresume.model.Experience;
-import com.riri.displayresume.model.Personal;
-import com.riri.displayresume.model.Skill;
-import com.riri.displayresume.repositories.EduRepo;
-import com.riri.displayresume.repositories.ExperienceRepo;
-import com.riri.displayresume.repositories.PersonalRepo;
-import com.riri.displayresume.repositories.SkillRepo;
+import com.riri.displayresume.model.*;
+import com.riri.displayresume.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +23,22 @@ public class ResumeController {
     ExperienceRepo experienceRepo;
     @Autowired
     SkillRepo skillRepo;
+    @Autowired
+    SummaryRepo summaryRepo;
+    @Autowired
+    ReferenceRepo refRepo;
+    @Autowired
+    ViewRepo viewRepo;
+
 
     @RequestMapping("/")
     public String listpersonal(Model model) {
-        return "redirect:/addpersonal";
+        return "index";
+    }
+
+    @RequestMapping("/index")
+    public String homepersonal(Model model) {
+        return "index";
     }
 
     @GetMapping("/addpersonal")
@@ -101,13 +107,67 @@ public class ResumeController {
         return "redirect:/addskill";
 
     }
+
+
+    @GetMapping("/addsummary")
+    public String summaryForm(Model model){
+        model.addAttribute("summary",new Summary());
+        return "summary";
+    }
+
+    @PostMapping("/addsummary")
+    public String processSummaryForm(@Valid @ModelAttribute("summary") Summary summary,
+                                   BindingResult result){
+        if(result.hasErrors()){
+            return "summary";
+        }
+        summaryRepo.save(summary);
+        return "redirect:/addsummary";
+
+    }
+
+
+    @GetMapping("/addreference")
+    public String referenceForm(Model model){
+        model.addAttribute("reference",new Reference());
+        return "referenceform";
+    }
+
+    @PostMapping("/addreference")
+    public String processRefForm(@Valid @ModelAttribute("reference") Reference reference,
+                                   BindingResult result){
+        if(result.hasErrors()){
+            return "referenceform";
+        }
+        refRepo.save(reference);
+        return "redirect:/addreference";
+
+    }
+
+    @GetMapping("/addview")
+    public String viewForm(Model model){
+        model.addAttribute("skill",new View());
+        return "viewform";
+    }
+
+    @PostMapping("/addview")
+    public String processViewForm(@Valid @ModelAttribute("view") View view,
+                                   BindingResult result){
+        if(result.hasErrors()){
+            return "viewform";
+        }
+       viewRepo.save(view);
+        return "redirect:/addview";
+
+    }
     @GetMapping("/displayresume")
     public String displayResume(Model model){
         model.addAttribute("personals", personalRepo.findAll());
         model.addAttribute("educations", eduRepo.findAll());
         model.addAttribute("experiences", experienceRepo.findAll());
         model.addAttribute("skills", skillRepo.findAll());
-        return "printresume";
+//        return "printresume";
+        return "viewform";
     }
 
 }

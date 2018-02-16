@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/css/styles.css"/>
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
 
@@ -18,12 +17,15 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!--<a class="navbar-brand" href="#">Resume Library</a> -->
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="nav nav-tabs">
-
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/addsummary">Summary</a>
             </li>
@@ -43,12 +45,52 @@
                 <a class="nav-link" href="/addreference">References</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/displayresume">View</a>
+            <li class="nav-item active nav-pills">
+                <a class="nav-link active" href="/displayresume">View</a>
             </li>
         </ul>
     </div>
 </nav>
+
+
+<table>
+
+    <tr><b>Personal Information: </b></tr>
+    <tr th:each="personal :${personals}">
+        <p><img align="left" width="100" height="100" th:src="(${personal.image}==null)?'https://upload.wikimedia.org/wikipedia/commons/a/a9/Vector_Book_blue.svg':${personal.image}"/></p>
+        <!--<img th:src="${personal.image}" width="100" height="100"/>-->
+        <br />
+        <p th:text ="'Name: ' +${personal.name}"> Name and Email</p>
+        <p th:text ="'Email: ' +${personal.email}">some text here</p>
+
+    </tr>
+    <br /><br />
+    <tr><b>Educational Background: </b></tr>
+    <tr th:each="education :${educations}">
+        <p th:text ="'Education: ' +${education.title}">some text here</p>
+        <p th:text ="'Level: ' +${education.level}">some text here</p>
+    </tr>
+
+    <br /><br />
+    <tr><b>Work Experience: </b></tr>
+    <tr th:each="experience :${experiences}">
+        <p th:text ="'Company: ' +${experience.company}">some text here</p>
+        <p th:text ="'Position: ' +${experience.position}">some text here</p>
+    </tr>
+
+
+    <br /><br />
+    <tr><b>Skills Information: </b></tr>
+    <tr th:each="skill :${skills}">
+        <p th:text ="'Skill name: '+${skill.skillName}">some text here</p>
+        <p th:text ="'Skill level: '+${skill.skillLevel}">some text here</p>
+    </tr>
+
+
+</table>
+
+<br />
+<a th:href="@{/index}">Back to Home</a>
 
 <div th:replace="fragments/base :: footer"></div>
 

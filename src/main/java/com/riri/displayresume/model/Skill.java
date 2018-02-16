@@ -17,11 +17,12 @@ public class Skill {
     @NotNull
     @Size(min=1,message="Enter at least {min} characters")
     private String skillName;
-
-    @NotNull
+   @NotNull
     @Min(1)
     @Max(5)
     private int skillLevel;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
