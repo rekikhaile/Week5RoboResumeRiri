@@ -122,7 +122,7 @@ public class ResumeController {
             return "summary";
         }
         summaryRepo.save(summary);
-        return "redirect:/addsummary";
+        return "redirect:/addpersonal";
 
     }
 
@@ -162,10 +162,13 @@ public class ResumeController {
     }
     @GetMapping("/displayresume")
     public String displayResume(Model model){
+        model.addAttribute("summaries", summaryRepo.findAll());
         model.addAttribute("personals", personalRepo.findAll());
         model.addAttribute("educations", eduRepo.findAll());
-        model.addAttribute("experiences", experienceRepo.findAll());
         model.addAttribute("skills", skillRepo.findAll());
+        model.addAttribute("experiences", experienceRepo.findAll());
+        model.addAttribute("references",refRepo.findAll());
+
 //        return "printresume";
         return "viewform";
     }

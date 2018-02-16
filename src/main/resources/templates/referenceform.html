@@ -50,6 +50,24 @@
     </div>
 </nav>
 
+<form th:action="@{/addreference}" th:object="${reference}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+
+        <span th:if="${#fields.hasErrors('refName')}" th:errors="*{refName}"></span><br/>
+        <label>Reference Name: </label><input type="text" th:field="*{refName}"/>
+    </div>
+    <div class="form-group">
+        <span th:if="${#fields.hasErrors('refNum')}" th:errors="*{refNum}"></span><br/>
+        <label>Reference Phone Number: </label><input type="text" th:field="*{refNum}"/>
+    </div>
+
+    <br />
+    <input type="submit" value="Submit Reference"/>
+</form>
+
+
 <br />
 <a th:href="@{/displayresume}">Continue to View Resume</a>
 

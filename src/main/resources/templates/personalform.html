@@ -51,21 +51,22 @@
     </div>
 </nav>
 
-
     <form th:action="@{/postpersonal}" th:object="${personal}" method="post">
         <input type="hidden" th:field="*{id}"/>
 
-
+        <div class="form-group">
 
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
         <label>Name: </label><input type="text" th:field="*{name}"/>
-
+        </div>
+        <div class="form-group">
         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br/>
         <label>Email: </label><input type="text" th:field="*{email}"/>
-
+        </div>
+            <div class="form-group">
         <!--<label>Image: </label><input type="file" th:field="*{image}"/>-->
         <label>Image: </label><input type="url" th:field="*{image}"  placeholder="Enter image link"/>
-
+            </div>
         <br />
         <input type="submit" value="Submit Personal info"/>
     </form>
@@ -76,6 +77,7 @@
 <a th:href="@{/displayresume}">Continue to View Resume</a>
 
 <div th:replace="fragments/base :: footer"></div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

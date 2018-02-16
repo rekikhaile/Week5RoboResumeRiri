@@ -52,10 +52,18 @@
     </div>
 </nav>
 
+<div class="container">
+    <h3 th:text="Resume"></h3>
+<table class="table table-striped">
 
-<table>
 
-    <tr><b>Personal Information: </b></tr>
+    <tr><b>Summary: </b></tr>
+    <tr th:each="summary :${summaries}">
+        <p th:text ="'Summary: '+${summary.summaryStr}">some text here</p>
+    </tr>
+    <br /><br />
+
+    <tr><b>Contact Information: </b></tr>
     <tr th:each="personal :${personals}">
         <p><img align="left" width="100" height="100" th:src="(${personal.image}==null)?'https://upload.wikimedia.org/wikipedia/commons/a/a9/Vector_Book_blue.svg':${personal.image}"/></p>
         <!--<img th:src="${personal.image}" width="100" height="100"/>-->
@@ -72,6 +80,15 @@
     </tr>
 
     <br /><br />
+    <tr><b>Skills Information: </b></tr>
+    <tr th:each="skill :${skills}">
+        <p th:text ="'Skill name: '+${skill.skillName}">some text here</p>
+        <p th:text ="'Skill level: '+${skill.skillLevel}">some text here</p>
+    </tr>
+
+
+
+    <br /><br />
     <tr><b>Work Experience: </b></tr>
     <tr th:each="experience :${experiences}">
         <p th:text ="'Company: ' +${experience.company}">some text here</p>
@@ -80,14 +97,15 @@
 
 
     <br /><br />
-    <tr><b>Skills Information: </b></tr>
-    <tr th:each="skill :${skills}">
-        <p th:text ="'Skill name: '+${skill.skillName}">some text here</p>
-        <p th:text ="'Skill level: '+${skill.skillLevel}">some text here</p>
+    <tr><b>References: </b></tr>
+    <tr th:each="refer :${references}">
+        <p th:text ="'Reference Name: '+${refer.refName}">some text here</p>
+        <p th:text ="'Refernce Number: '+${refer.refNum}">some text here</p>
     </tr>
 
 
 </table>
+</div>
 
 <br />
 <a th:href="@{/index}">Back to Home</a>

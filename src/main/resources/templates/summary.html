@@ -52,6 +52,22 @@
     </div>
 </nav>
 
+<form th:action="@{/addsummary}" th:object="${summary}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+
+        <span th:if="${#fields.hasErrors('summaryStr')}" th:errors="*{summaryStr}"></span><br/>
+        <label>Name: </label><input type="text" class="form-control" th:field="*{summaryStr}"/>
+        <!--<textarea class="form-control" name="summary" th:field="*{summary}" placeholder="Write summary here"></textarea>-->
+
+
+
+    </div>
+    <br />
+    <input type="submit" value="Submit Summary"/>
+</form>
+
 
 <br />
 <a th:href="@{/addpersonal}">Continue to Contact Information</a>
