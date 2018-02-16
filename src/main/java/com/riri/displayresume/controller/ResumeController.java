@@ -31,6 +31,11 @@ public class ResumeController {
     ViewRepo viewRepo;
     @Autowired
     CoverLetterRepo coverLetterRepo;
+    @Autowired
+    UserService userService;
+
+
+
 
 
     @RequestMapping("/")
@@ -149,14 +154,14 @@ public class ResumeController {
     @GetMapping("/addview")
     public String viewForm(Model model){
         model.addAttribute("skill",new View());
-        return "viewform";
+        return "printresume";
     }
 
     @PostMapping("/addview")
     public String processViewForm(@Valid @ModelAttribute("view") View view,
                                    BindingResult result){
         if(result.hasErrors()){
-            return "viewform";
+            return "printresume";
         }
        viewRepo.save(view);
         return "redirect:/addview";
@@ -196,7 +201,19 @@ public class ResumeController {
         model.addAttribute("experiences", experienceRepo.findAll());
         model.addAttribute("references",refRepo.findAll());
 
-        return "viewform";
+        return "printresume";
+    }
+
+    @GetMapping("/register")
+    public String showRegistration(Model model){
+        model.addAttribute("registration", new User());
+        return "registration";
+
+    }
+
+    @RequestMapping("/login")
+    public String showLogin(Model model){
+        return "login";
     }
 
 }

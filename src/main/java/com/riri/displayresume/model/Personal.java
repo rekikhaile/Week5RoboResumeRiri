@@ -1,5 +1,6 @@
 package com.riri.displayresume.model;
 
+import org.hibernate.validator.constraints.Email;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +12,10 @@ import javax.validation.constraints.Size;
 public class Personal {
 
     @NotNull
-    @Size(min=3,message="Enter at least {min} characters")
+    @Size(min=3,max = 30)
     private String name;
 
-    @NotNull
-    @Size(min=4,message="Enter at least {min} characters")
+    @Email
     private String email;
 
     private String image;
