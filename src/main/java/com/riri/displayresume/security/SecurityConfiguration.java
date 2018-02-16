@@ -25,48 +25,47 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsServiceBean() throws Exception {
         return new SSUserDetailsService(userRepository);
     }
+
+    /*"/addpersonal","/postpersonal","/addeducation","/posteducation","/addexperience",
+        "/postexperience", "/postskill","/addsummary","/addreference","/addview","/coverletter",*/
     @Override
     protected void configure(HttpSecurity http) throws Exception{
 
         http
                 .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/")
+                .antMatchers("/h2-console/**", "/css/**", "/images/**","/register").permitAll()
+/*
+                .antMatchers("/","/employerindex","/printletteremployer","/displayresumeemployer")
+*/
+                .antMatchers("/","/printletter","/displayresume")
                 .access("hasAuthority('USER') or hasAuthority('ADMIN')")
-                .antMatchers("/admin").access("hasAuthority('ADMIN')")
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/employerindex","/index","/addpersonal","/postpersonal","/addeducation","/posteducation","/addexperience",
+                        "/postexperience", "/postskill","/addsummary","/addreference","/addview","/coverletter").access("hasAuthority('ADMIN')")
+                .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .formLogin().loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(
+                        new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login").permitAll().permitAll()
                 .and()
                 .httpBasic();
         http
-                .csrf()
-                .disable();
+                .csrf().disable();
         http
                 .headers().frameOptions().disable();
-       /* http
-                .authorizeRequests()
-                .antMatchers("/")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .httpBasic();*/
+
 
 
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception{
-        auth.inMemoryAuthentication()
+       /* auth.inMemoryAuthentication()
                 .withUser("user").password("password").authorities("USER")
                 .and()
-                .withUser("davewolf").password("beastmaster").authorities("ADMIN");
+                .withUser("davewolf").password("beastmaster").authorities("ADMIN");*/
         auth
                 .userDetailsService(userDetailsServiceBean());
     }

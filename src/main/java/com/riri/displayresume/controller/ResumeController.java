@@ -35,11 +35,9 @@ public class ResumeController {
     UserService userService;
 
 
-
-
-
     @RequestMapping("/")
     public String listpersonal(Model model) {
+
         return "index";
     }
 
@@ -47,6 +45,12 @@ public class ResumeController {
     public String homepersonal(Model model) {
         return "index";
     }
+
+    @RequestMapping("/employerindex")
+    public String employerHome(Model model) {
+        return "indexemployer";
+    }
+
 
     @GetMapping("/addpersonal")
     public String personalForm(Model model){
@@ -202,6 +206,25 @@ public class ResumeController {
         model.addAttribute("references",refRepo.findAll());
 
         return "printresume";
+    }
+
+
+    @GetMapping("/printletteremployer")
+    public String employerDisplayCoverLetter(Model model){
+        model.addAttribute("coverletters",coverLetterRepo.findAll());
+        return "employerviewcoverletter";
+    }
+
+    @GetMapping("/displayresumeemployer")
+    public String employerDisplayResume(Model model){
+        model.addAttribute("summaries", summaryRepo.findAll());
+        model.addAttribute("personals", personalRepo.findAll());
+        model.addAttribute("educations", eduRepo.findAll());
+        model.addAttribute("skills", skillRepo.findAll());
+        model.addAttribute("experiences", experienceRepo.findAll());
+        model.addAttribute("references",refRepo.findAll());
+
+        return "employerprintresume";
     }
 
     @GetMapping("/register")

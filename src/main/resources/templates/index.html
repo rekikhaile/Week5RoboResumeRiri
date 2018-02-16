@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th ="www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymleaf.org/thyeleaf-extras-springsecurity3">
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 <link rel="stylesheet" href="/css/styles.css"/>
@@ -59,6 +61,21 @@
 </nav>
 
 <p align="center"> Test Page </p>
+
+<sec:authorize access="hasAuthority('USER')">
+    <table>
+        <tr>
+            <td>xxx</td>
+            Some administrator data here
+        </tr>
+    </table>
+</sec:authorize>
+
+<sec:authorize access="hasAuthority('ADMIN')">
+    Restricted data, you are not allowed to access this resource
+</sec:authorize>
+
+
 
 <div th:replace="fragments/base :: footer"></div>
 
