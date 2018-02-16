@@ -29,6 +29,8 @@ public class ResumeController {
     ReferenceRepo refRepo;
     @Autowired
     ViewRepo viewRepo;
+    @Autowired
+    CoverLetterRepo coverLetterRepo;
 
 
     @RequestMapping("/")
@@ -160,6 +162,31 @@ public class ResumeController {
         return "redirect:/addview";
 
     }
+
+
+    @GetMapping("/coverletter")
+    public String viewLetter(Model model){
+        model.addAttribute("cvrltr",new CoverLetter());
+        return "coverletterform";
+    }
+
+    @PostMapping("/coverletter")
+    public String processCoverLetter(@Valid @ModelAttribute("cvrltr") CoverLetter coverLetter,
+                                  BindingResult result){
+        if(result.hasErrors()){
+            return "coverletterform";
+        }
+        coverLetterRepo.save(coverLetter);
+        return "redirect:/coverletter";
+
+    }
+
+    @GetMapping("/printletter")
+    public String displayCoverLetter(Model model){
+        model.addAttribute("coverletters",coverLetterRepo.findAll());
+        return "printcoverletter";
+    }
+
     @GetMapping("/displayresume")
     public String displayResume(Model model){
         model.addAttribute("summaries", summaryRepo.findAll());
@@ -168,6 +195,7 @@ public class ResumeController {
         model.addAttribute("skills", skillRepo.findAll());
         model.addAttribute("experiences", experienceRepo.findAll());
         model.addAttribute("references",refRepo.findAll());
+
 
 //        return "printresume";
         return "viewform";

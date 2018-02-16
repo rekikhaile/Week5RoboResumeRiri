@@ -6,6 +6,22 @@
 </head>
 <body>
 
+<div th:fragment="viewmenu" class="collapse navbar-collapse justify-content-between" id="navbar2">
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            View Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" th:href="@{/displayresume}">Completed Resume </a>
+            <a class="dropdown-item" th:href="@{/printletter}">Cover Letter</a>
+
+        </div>
+    </li>
+
+</div>
+
+
    <div th:fragment="footer">Copyright &copy; 2018</div>
 </body>
 </html>

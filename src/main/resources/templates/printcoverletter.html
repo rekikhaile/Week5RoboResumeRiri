@@ -43,43 +43,22 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/displayresume">View</a>
+                <a class="nav-link" href="/coverletter">Add Cover Letter</a>
             </li>
+
+            <div th:replace="fragments/base :: viewmenu"></div>
         </ul>
     </div>
 </nav>
 
     <table>
 
-        <tr><b>Personal Information: </b></tr>
-        <tr th:each="personal :${personals}">
-            <p><img align="left" width="100" height="100" th:src="(${personal.image}==null)?'https://upload.wikimedia.org/wikipedia/commons/a/a9/Vector_Book_blue.svg':${personal.image}"/></p>
-            <!--<img th:src="${personal.image}" width="100" height="100"/>-->
-            <br />
-            <p th:text ="'Name: ' +${personal.name}"> Name and Email</p>
-            <p th:text ="'Email: ' +${personal.email}">some text here</p>
+        <tr><b>Cover Letter: </b></tr>
+        <tr th:each="cover :${coverletters}">
 
-        </tr>
-        <br /><br />
-        <tr><b>Educational Background: </b></tr>
-        <tr th:each="education :${educations}">
-            <p th:text ="'Education: ' +${education.title}">some text here</p>
-            <p th:text ="'Level: ' +${education.level}">some text here</p>
-        </tr>
+            <p th:text ="'Title: ' +${cover.title}"> Title</p>
+            <p th:text ="'Cover Letter: ' +${cover.letter}">some text here</p>
 
-        <br /><br />
-        <tr><b>Work Experience: </b></tr>
-        <tr th:each="experience :${experiences}">
-            <p th:text ="'Company: ' +${experience.company}">some text here</p>
-            <p th:text ="'Position: ' +${experience.position}">some text here</p>
-        </tr>
-
-
-        <br /><br />
-        <tr><b>Skills Information: </b></tr>
-        <tr th:each="skill :${skills}">
-            <p th:text ="'Skill name: '+${skill.skillName}">some text here</p>
-            <p th:text ="'Skill level: '+${skill.skillLevel}">some text here</p>
         </tr>
 
 
