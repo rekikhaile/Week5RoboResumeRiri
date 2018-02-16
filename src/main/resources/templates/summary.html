@@ -15,44 +15,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!--<a class="navbar-brand" href="#">Resume Library</a> -->
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active nav-pills">
-                <a class="nav-link active" href="/addsummary">Summary</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addpersonal">Contact Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addeducation">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addskill">Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addexperience">Experience</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addreference">References</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/coverletter">Add Cover Letter</a>
-            </li>
-
-            <div th:replace="fragments/base :: viewmenu"></div>
-        </ul>
-    </div>
-</nav>
+<div th:replace="fragments/base :: applicantnavbar"></div>
 
 <form th:action="@{/addsummary}" th:object="${summary}" method="post">
     <input type="hidden" th:field="*{id}"/>
@@ -60,14 +23,16 @@
     <div class="form-group">
 
         <span th:if="${#fields.hasErrors('summaryStr')}" th:errors="*{summaryStr}"></span><br/>
-        <label>Name: </label><input type="text" class="form-control" th:field="*{summaryStr}"/>
+        <label>Summary: </label><input type="text" class="form-control" th:field="*{summaryStr}"/>
         <!--<textarea class="form-control" name="summary" th:field="*{summary}" placeholder="Write summary here"></textarea>-->
 
 
 
     </div>
     <br />
-    <input type="submit" value="Submit Summary"/>
+    <div class="controls">
+        <button type="submit" class="btn btn-success">Submit Summary</button>
+    </div>
 </form>
 
 

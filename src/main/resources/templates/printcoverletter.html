@@ -15,49 +15,16 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!--<a class="navbar-brand" href="#">Resume Library</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav nav-tabs">
-
-            <li class="nav-item">
-                <a class="nav-link" href="/addsummary">Summary</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addpersonal">Contact Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addeducation">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addskill">Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addexperience">Experience</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addreference">References</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/coverletter">Add Cover Letter</a>
-            </li>
-
-            <div th:replace="fragments/base :: viewmenu"></div>
-        </ul>
-    </div>
-</nav>
+<div th:replace="fragments/base :: applicantnavbar"></div>
 
 
-<div class="container">
+<div class="container riripacifico">
     <h3>Cover Letter</h3>
     <table class="table table-striped">
         <tr th:each="cover :${coverletters}">
 
             <p th:text ="'Title: ' +${cover.title}"> Title</p>
+            <div class="riripacifico"></div>
             <p th:text ="'Cover Letter: ' +${cover.letter}">some text here</p>
 
         </tr>

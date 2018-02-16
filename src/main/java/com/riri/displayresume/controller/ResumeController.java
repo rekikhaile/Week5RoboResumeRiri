@@ -3,15 +3,15 @@ package com.riri.displayresume.controller;
 import com.riri.displayresume.model.*;
 import com.riri.displayresume.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class ResumeController {
@@ -56,6 +56,16 @@ public class ResumeController {
     public String personalForm(Model model){
         model.addAttribute("personal",new Personal());
         return "personalform";
+    }
+
+    //for testing purpose only
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Principal principal, Model model) {
+       //String currentuser = principal.getName();
+       model.addAttribute("currentuser", principal.getName());
+        System.out.println( "usert: "+principal.getName());
+        return "index";
     }
 
     @PostMapping("/postpersonal")
@@ -155,6 +165,7 @@ public class ResumeController {
 
     }
 
+    //for testing purpose only
     @GetMapping("/addview")
     public String viewForm(Model model){
         model.addAttribute("skill",new View());
@@ -186,7 +197,7 @@ public class ResumeController {
             return "coverletterform";
         }
         coverLetterRepo.save(coverLetter);
-        return "redirect:/coverletter";
+        return "redirect:/";
 
     }
 
@@ -227,7 +238,7 @@ public class ResumeController {
         return "employerprintresume";
     }
 
-    @GetMapping("/register")
+    @RequestMapping("/register")
     public String showRegistration(Model model){
         model.addAttribute("registration", new User());
         return "registration";

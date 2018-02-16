@@ -5,7 +5,9 @@
     <title>Add Education</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="stylesheet" href="/css/stylesheet.css"/>
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
+
 <body>
 
 <div class="jumbotron jumbotron-fluid">
@@ -15,42 +17,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!--<a class="navbar-brand" href="#">Resume Library</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addsummary">Summary</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addpersonal">Contact Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addeducation">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addskill">Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addexperience">Experience</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addreference">References</a>
-            </li>
-            <li class="nav-item active nav-pills">
-                <a class="nav-link active" href="/coverletter">Add Cover Letter</a>
-            </li>
-
-            <div th:replace="fragments/base :: viewmenu"></div>
-        </ul>
-    </div>
-</nav>
+<div th:replace="fragments/base :: applicantnavbar"></div>
 
 <form th:action="@{/coverletter}" th:object="${cvrltr}" method="post">
     <input type="hidden" th:field="*{id}"/>
@@ -62,7 +29,7 @@
     </div>
     <div class="form-group">
         <span th:if="${#fields.hasErrors('letter')}" th:errors="*{letter}"></span><br/>
-        <label>Cover Letter: </label><input type="text" th:field="*{letter}"/>
+        <label>Cover Letter: </label><input type="text" class="form-control" th:field="*{letter}"/>
     </div>
 
     <br />
@@ -71,10 +38,9 @@
     </div>
 </form>
 <br />
-<a th:href="@{/addeducation}">Continue to Education</a>
+<a th:href="@{/printletter}">Print Cover letter</a>
 
-<br />
-<a th:href="@{/displayresume}">Continue to View Resume</a>
+
 
 <div th:replace="fragments/base :: footer"></div>
 

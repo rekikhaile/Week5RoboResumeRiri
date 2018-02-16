@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th ="www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymleaf.org/thyeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="stylesheet" href="/css/stylesheet.css"/>
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<body>
+<body background="/images/homebg.jpg" >
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -18,66 +19,43 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!--<a class="navbar-brand" href="#">Resume Library</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav nav-tabs">
+<div th:replace="fragments/base :: applicantnavbar"></div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/addsummary">Summary</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addpersonal">Contact Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addeducation">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addskill">Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addexperience">Experience</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addreference">References</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/coverletter">Add Cover Letter</a>
-            </li>
+<div class="riripacifico">Hola segniorita test</div>
 
-            <div th:replace="fragments/base :: viewmenu"></div>
+<div class="container-fluid riripacifico">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec feugiat nisl pretium fusce id velit ut tortor pretium. Pretium nibh ipsum consequat nisl vel pretium lectus quam id. Magna etiam tempor orci eu. Semper auctor neque vitae tempus. Elit at imperdiet dui accumsan sit amet nulla facilisi. Senectus et netus et malesuada fames ac. Et malesuada fames ac turpis egestas. Eget est lorem ipsum dolor. Congue mauris rhoncus aenean vel elit scelerisque.
+
+    Senectus et netus et malesuada fames ac. Diam maecenas sed enim ut sem viverra aliquet. Molestie at elementum eu facilisis sed odio morbi. Ac ut consequat semper viverra nam libero. Massa placerat duis ultricies lacus sed turpis tincidunt. Quis imperdiet massa tincidunt nunc pulvinar sapien et. Dignissim suspendisse in est ante in nibh mauris. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Commodo odio aenean sed adipiscing diam. Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Ultrices tincidunt arcu non sodales neque. Placerat in egestas erat imperdiet sed euismod nisi porta lorem.
+
+    Suspendisse sed nisi lacus sed. Velit dignissim sodales ut eu sem integer. Orci a scelerisque purus semper eget duis at. Et netus et malesuada fames ac. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Nisl nisi scelerisque eu ultrices. Sed adipiscing diam donec adipiscing tristique risus. Vitae purus faucibus ornare suspendisse sed nisi lacus sed viverra. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis. Nisl tincidunt eget nullam non nisi est. Dui ut ornare lectus sit amet est placerat in. Neque ornare aenean euismod elementum nisi quis eleifend quam adipiscing. Pellentesque habitant morbi tristique senectus et. Magna sit amet purus gravida quis blandit turpis cursus in. Id semper risus in hendrerit. Nisl tincidunt eget nullam non. Erat imperdiet sed euismod nisi porta lorem mollis aliquam.
+
+    Sit amet mauris commodo quis. Id velit ut tortor pretium viverra. Est velit egestas dui id ornare. Eu augue ut lectus arcu bibendum at varius vel pharetra. Sed risus ultricies tristique nulla aliquet enim tortor. Rhoncus est pellentesque elit ullamcorper dignissim cras. Ullamcorper morbi tincidunt ornare massa. Aliquam sem et tortor consequat id porta nibh venenatis. Gravida dictum fusce ut placerat. Magna fermentum iaculis eu non. Risus nec feugiat in fermentum posuere. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Ac turpis egestas sed tempus urna et pharetra. Cras sed felis eget velit. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus. Ultricies tristique nulla aliquet enim tortor at auctor. Sagittis vitae et leo duis ut diam quam nulla.
+</div>
 
 
-        </ul>
+<div th:replace="fragments/base :: footer"></div>
+
+<!--
+
+    <div sec:authorize="hasAuthority('ADMIN')">
+        This will only be displayed if authenticated user has role ROLE_ADMIN.
     </div>
-
-
-
 
 
 </nav>
 
 <p align="center"> Test Page </p>
 
-<sec:authorize access="hasAuthority('USER')">
-    <table>
-        <tr>
-            <td>xxx</td>
-            Some administrator data here
-        </tr>
-    </table>
-</sec:authorize>
+</div>
+<div th:text="${currentuser}"></div>
 
-<sec:authorize access="hasAuthority('ADMIN')">
-    Restricted data, you are not allowed to access this resource
-</sec:authorize>
+<div th:inline="text">User name is [[${currentuser}]]
+-->
 
 
 
-<div th:replace="fragments/base :: footer"></div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
