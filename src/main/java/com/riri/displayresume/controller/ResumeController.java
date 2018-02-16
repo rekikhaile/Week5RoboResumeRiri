@@ -196,8 +196,6 @@ public class ResumeController {
         model.addAttribute("experiences", experienceRepo.findAll());
         model.addAttribute("references",refRepo.findAll());
 
-
-//        return "printresume";
         return "viewform";
     }
 
