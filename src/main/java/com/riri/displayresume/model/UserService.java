@@ -1,5 +1,7 @@
 package com.riri.displayresume.model;
 
+import com.riri.displayresume.repositories.JobRepo;
+import com.riri.displayresume.repositories.OrganizationRepo;
 import com.riri.displayresume.repositories.RoleRepository;
 import com.riri.displayresume.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,19 @@ public class UserService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+/*    @Autowired
+    JobRepo jobRepo;
     @Autowired
+    OrganizationRepo orgRepo;*/
+
+
+    @Autowired
+//    public UserService(UserRepository userRepository, JobRepo jobRepo, OrganizationRepo orgRepo){
     public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
+
+            this.userRepository = userRepository;
     }
+
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }

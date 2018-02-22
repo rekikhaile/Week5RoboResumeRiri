@@ -21,18 +21,12 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skillsets;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Set<Organization> orgs;
+    @ManyToOne()
+    /*@ManyToOne(fetch = FetchType.LAZY)*/
+    private Organization org;
 
     public Job() {
         this.skillsets = new HashSet<>();
-    }
-
-    public Job(String jobName, String jobDesc, Set<Skill> skillsets, Set<Organization> orgs) {
-        this.jobName = jobName;
-        this.jobDesc = jobDesc;
-        this.skillsets = skillsets;
-        this.orgs = orgs;
     }
 
     public long getId() {
@@ -67,11 +61,11 @@ public class Job {
         this.skillsets = skillsets;
     }
 
-    public Set<Organization> getOrgs() {
-        return orgs;
+    public Organization getOrg() {
+        return org;
     }
 
-    public void setOrgs(Set<Organization> orgs) {
-        this.orgs = orgs;
+    public void setOrg(Organization org) {
+        this.org = org;
     }
 }

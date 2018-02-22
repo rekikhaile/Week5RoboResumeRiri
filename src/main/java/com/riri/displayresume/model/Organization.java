@@ -1,6 +1,7 @@
 package com.riri.displayresume.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,16 +12,44 @@ public class Organization {
     private long id;
 
     private String orgName;
+    private String orgDesc;
 
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Job> jobs;
+    @OneToMany(mappedBy = "org")
+    private Set<Job> jobs = new HashSet<>();
 
     public Organization() {
     }
 
-    public Organization(String orgName, Set<Job> jobs) {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
         this.orgName = orgName;
+    }
+
+    public String getOrgDesc() {
+        return orgDesc;
+    }
+
+    public void setOrgDesc(String orgDesc) {
+        this.orgDesc = orgDesc;
+    }
+
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
         this.jobs = jobs;
     }
 }

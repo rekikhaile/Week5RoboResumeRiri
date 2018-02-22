@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -33,6 +34,8 @@ public class ResumeController {
     CoverLetterRepo coverLetterRepo;
     @Autowired
     UserService userService;
+    @Autowired
+    JobRepo jobRepo;
 
 
     @RequestMapping("/")
@@ -248,6 +251,24 @@ public class ResumeController {
     @RequestMapping("/login")
     public String showLogin(Model model){
         return "login";
+    }
+
+
+    @GetMapping("/addjob")
+    public String addJobs(Model model){
+        model.addAttribute("job", new Job());
+        return "addjobform";
+    }
+
+    @PostMapping("/addjob")
+    public String postAddJobs(@Valid @ModelAttribute("job") Job job,
+                                     BindingResult result) {
+        if (result.hasErrors()) {
+            return "addjobform";
+        }
+        jobRepo.save(job);
+        return "redirect:/";
+
     }
 
 }
