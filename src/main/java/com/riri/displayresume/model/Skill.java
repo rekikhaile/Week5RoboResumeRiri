@@ -2,18 +2,19 @@ package com.riri.displayresume.model;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Skill {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @NotNull
     @Size(min=1,message="Enter at least {min} characters")
     private String skillName;
@@ -23,10 +24,30 @@ public class Skill {
     private int skillLevel;
 
 
+    @ManyToMany(mappedBy = "skillsets",fetch = FetchType.LAZY)
+    private Set<Job> jobs;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+
+    public Skill(String skillName) {
+        this.skillName = skillName;
+    }
+
+    public Skill() {
+    }
+
+    public Skill(String skillName, int skillLevel, Set<Job> jobs) {
+        this.skillName = skillName;
+        this.skillLevel = skillLevel;
+        this.jobs = jobs;
+    }
+
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
 
     public String getSkillName() {
         return skillName;
