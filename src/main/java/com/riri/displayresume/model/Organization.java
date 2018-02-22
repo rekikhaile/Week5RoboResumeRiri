@@ -15,7 +15,8 @@ public class Organization {
     private String orgDesc;
 
 
-    @OneToMany(mappedBy = "org")
+    @OneToMany()
+    @JoinColumn(name = "org_id") //which column on the job table tells jobs owned by the organization object
     private Set<Job> jobs = new HashSet<>();
 
     public Organization() {

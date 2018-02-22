@@ -36,6 +36,8 @@ public class ResumeController {
     UserService userService;
     @Autowired
     JobRepo jobRepo;
+    @Autowired
+    OrganizationRepo orgRepo;
 
 
     @RequestMapping("/")
@@ -256,19 +258,33 @@ public class ResumeController {
 
     @GetMapping("/addjob")
     public String addJobs(Model model){
-        model.addAttribute("job", new Job());
+        ///model.addAttribute("job", new Job());
+        model.addAttribute(new Job());
+        model.addAttribute("orgas", orgRepo.findAll());
         return "addjobform";
     }
 
     @PostMapping("/addjob")
-    public String postAddJobs(@Valid @ModelAttribute("job") Job job,
-                                     BindingResult result) {
+   /* public String postAddJobs(@Valid @ModelAttribute("job") Job job,
+                                     BindingResult result) {*/
+    public String postAddJobs(@ModelAttribute @Valid Job job,
+                              BindingResult result, @RequestParam long orgId, Model model) {
         if (result.hasErrors()) {
             return "addjobform";
         }
+        Organization orga = orgRepo.findOne(orgId);
+        job.setOrg(orga);
         jobRepo.save(job);
         return "redirect:/";
 
     }
+
+
+    @GetMapping("/displayjobs")
+    public String DisplayJobs(Model model){
+        model.addAttribute("jobs",jobRepo.findAll());
+        return "displayjobs";
+    }
+
 
 }

@@ -36,7 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**", "/css/**", "/images/**","/register").permitAll()
 /*
                 .antMatchers("/","/employerindex","/printletteremployer","/displayresumeemployer")
-*/              .antMatchers("/addjob", "/postskill", "/addskill").hasAuthority("RECRUITER")
+*/              .antMatchers("/addjob", "/postskill", "/addskill","/displayjobs").hasAuthority("RECRUITER")
+                .antMatchers("/addjob", "/postskill", "/addskill","/displayjobs").hasAuthority("ADMIN")
                 .antMatchers( "/postskill", "/addskill").hasAuthority("EMPLOYER")
                 .antMatchers("/","/printletter","/displayresume")
                 .access("hasAuthority('USER') or hasAuthority('ADMIN')")

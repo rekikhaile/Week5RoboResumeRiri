@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Resume Builder</h1>
+        <p class="lead">Build your resume here!</p>
+    </div>
+</div>
+
+<div th:replace="fragments/base :: applicantnavbar"></div>
+
+<form th:action="@{/addjob}" th:object="${job}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+
+        <span th:if="${#fields.hasErrors('jobName')}" th:errors="*{jobName}"></span><br/>
+        <label>Job Name: </label><input type="text" th:field="*{jobName}"/>
+    </div>
+    <div class="form-group">
+        <span th:if="${#fields.hasErrors('jobDesc')}" th:errors="*{jobDesc}"></span><br/>
+        <label>Job Description: </label><input type="text" th:field="*{jobDesc}"/>
+    </div>
+
+    <div class="form-group">
+       <label th:for="type">Organization</label>
+        <select name="orgId">
+            <option th:each="orga : ${orgas}"
+                    th:text="${orga.orgName}"
+                    th:value="${orga.id}"></option>
+        </select>
+    </div>
+
+    <br />
+    <div class="controls">
+        <button type="submit" class="btn btn-success">Submit Job</button>
+    </div>
+</form>
+
+
+<!--<br />
+<a th:href="@{/displayresume}">Continue to View Resume</a>-->
+
+<div th:replace="fragments/base :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
