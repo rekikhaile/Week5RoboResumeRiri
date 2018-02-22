@@ -1,7 +1,11 @@
 package com.riri.displayresume.security;
 
+import com.riri.displayresume.model.Job;
+import com.riri.displayresume.model.Organization;
 import com.riri.displayresume.model.Role;
 import com.riri.displayresume.model.User;
+import com.riri.displayresume.repositories.JobRepo;
+import com.riri.displayresume.repositories.OrganizationRepo;
 import com.riri.displayresume.repositories.RoleRepository;
 import com.riri.displayresume.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,11 @@ public class DataLoader implements CommandLineRunner {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    OrganizationRepo orgRepo;
+    @Autowired
+    JobRepo jobRepo;
+
     @Override
     public void run(String...strings) throws Exception{
         System.out.println("Loading data ....");
@@ -52,6 +61,12 @@ public class DataLoader implements CommandLineRunner {
         user.setRoles(Arrays.asList(recRole));
         userRepository.save(user);
 
+       Organization organ =new Organization("It", "It is a cool stuff");
+        orgRepo.save(organ);
 
+        //Job job = new Job("jobname", "jobdesc",organ);
+
+        organ =new Organization("Sales", "Sales are amazing");
+        orgRepo.save(organ);
     }
 }

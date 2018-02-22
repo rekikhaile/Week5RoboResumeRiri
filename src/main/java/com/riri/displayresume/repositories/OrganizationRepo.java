@@ -7,4 +7,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface OrganizationRepo extends CrudRepository<Organization, Long> {
+    //Organization findByJobs();
 }

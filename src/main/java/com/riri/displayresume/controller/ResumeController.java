@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Set;
 
 @Controller
 public class ResumeController {
@@ -258,33 +259,81 @@ public class ResumeController {
 
     @GetMapping("/addjob")
     public String addJobs(Model model){
-        ///model.addAttribute("job", new Job());
-        model.addAttribute(new Job());
+        Job job = new Job();
+        model.addAttribute("job", job);
+        //model.addAttribute(new Job());
         model.addAttribute("orgas", orgRepo.findAll());
         return "addjobform";
     }
 
     @PostMapping("/addjob")
-   /* public String postAddJobs(@Valid @ModelAttribute("job") Job job,
-                                     BindingResult result) {*/
+  /* public String postAddJobs(@Valid @ModelAttribute("job") Job job,
+                                     BindingResult result, Model model) {*/
     public String postAddJobs(@ModelAttribute @Valid Job job,
-                              BindingResult result, @RequestParam long orgId, Model model) {
+                              BindingResult result, @RequestParam String orgId, Model model) {
         if (result.hasErrors()) {
             return "addjobform";
         }
-        Organization orga = orgRepo.findOne(orgId);
+        Organization orga = orgRepo.findOne(Long.parseLong(orgId));
         job.setOrg(orga);
+        model.addAttribute("orgaName", orga.getOrgName());
         jobRepo.save(job);
         return "redirect:/";
 
     }
 
+    @GetMapping("/jobsinorg")
+    public String ajobsinOrganzation(Model model, @RequestParam long id){
+
+        Organization org = orgRepo.findOne(id);
+        Set<Job> jobs = org.getJobs();
+        model.addAttribute("jobsinorgs",jobs ); //jobs in organization
+        model.addAttribute("title","Jobs in Organization"+ org.getOrgName());
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/removejob")
+    public String removeJobs(Model model){
+        model.addAttribute("jobstoremove",jobRepo.findAll());
+        return "/removejob";
+    }
+    @PostMapping("/removejob")
+    public String processRemoveJob(@RequestParam long[] ids) {
+        for(long id : ids) {
+            jobRepo.delete(id);
+        }
+        return "redirect:";
+    }
 
     @GetMapping("/displayjobs")
     public String DisplayJobs(Model model){
         model.addAttribute("jobs",jobRepo.findAll());
         return "displayjobs";
     }
+
+    @GetMapping("/requiredskill")
+    public String addRequiredSkill(Model model){
+        Job job = new Job();
+        model.addAttribute("job", job);
+        model.addAttribute("allskills", skillRepo.findAll());
+        return "skillform";
+    }
+
+    @PostMapping("/requiredskill")
+    public String postRequiredSkill(@ModelAttribute @Valid Skill skill,
+                              BindingResult result, @RequestParam String skillId, Model model) {
+        if (result.hasErrors()) {
+            return "skillform";
+        }
+        Organization orga = orgRepo.findOne(Long.parseLong(skillId));
+        //skill.setOrg(orga);
+        model.addAttribute("orgaName", orga.getOrgName());
+        //jobRepo.save(skill);
+        return "redirect:/";
+
+    }
+
 
 
 }

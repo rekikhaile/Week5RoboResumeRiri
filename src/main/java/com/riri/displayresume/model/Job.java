@@ -21,12 +21,28 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skillsets;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     /*@ManyToOne(fetch = FetchType.LAZY)*/
     private Organization org;
 
+
+
     public Job() {
         this.skillsets = new HashSet<>();
+
+    }
+
+    public Job(String jobName, String jobDesc, Set<Skill> skillsets, Organization org) {
+        this.jobName = jobName;
+        this.jobDesc = jobDesc;
+        this.skillsets = skillsets;
+        this.org = org;
+    }
+
+    public Job(String jobName, String jobDesc, Organization org) {
+        this.jobName = jobName;
+        this.jobDesc = jobDesc;
+        this.org = org;
     }
 
     public long getId() {

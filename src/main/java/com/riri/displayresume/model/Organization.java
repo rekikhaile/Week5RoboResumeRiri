@@ -15,12 +15,19 @@ public class Organization {
     private String orgDesc;
 
 
-    @OneToMany()
+    @OneToMany
     @JoinColumn(name = "org_id") //which column on the job table tells jobs owned by the organization object
     private Set<Job> jobs = new HashSet<>();
 
     public Organization() {
     }
+
+    public Organization(String orgName, String orgDesc) {
+        this.orgName = orgName;
+        this.orgDesc = orgDesc;
+    }
+
+
 
     public long getId() {
         return id;

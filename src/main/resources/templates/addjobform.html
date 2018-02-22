@@ -29,14 +29,18 @@
         <label>Job Description: </label><input type="text" th:field="*{jobDesc}"/>
     </div>
 
+
+
+
     <div class="form-group">
        <label th:for="type">Organization</label>
         <select name="orgId">
-            <option th:each="orga : ${orgas}"
-                    th:text="${orga.orgName}"
-                    th:value="${orga.id}"></option>
+            <option th:each="org : ${orgas}"
+                    th:value="${org.id}" th:inline="text"> [[${org.orgName}]]</option>
         </select>
     </div>
+
+
 
     <br />
     <div class="controls">
