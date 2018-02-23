@@ -24,7 +24,8 @@ public class Skill {
     private int skillLevel;
 
 
-    @ManyToMany(mappedBy = "skillsets",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "skillsets") //hibernate should look for the propert skillsets
+    //on the class Job
     private Set<Job> jobs;
 
 
@@ -35,11 +36,12 @@ public class Skill {
     public Skill() {
     }
 
-    public Skill(String skillName, int skillLevel, Set<Job> jobs) {
+    public Skill(String skillName, int skillLevel) {
         this.skillName = skillName;
         this.skillLevel = skillLevel;
-        this.jobs = jobs;
     }
+
+
 
     public Set<Job> getJobs() {
         return jobs;

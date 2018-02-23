@@ -15,7 +15,7 @@ public class Job {
 
     private String jobDesc;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE)
     //This needs to be instantiated in the construtor so you can use it to add and remove individual skills
     @JoinTable(joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
@@ -25,7 +25,10 @@ public class Job {
     /*@ManyToOne(fetch = FetchType.LAZY)*/
     private Organization org;
 
-
+    public void addSkill(Skill sk)
+    {
+        this.skillsets.add(sk);
+    } //convinience method
 
     public Job() {
         this.skillsets = new HashSet<>();

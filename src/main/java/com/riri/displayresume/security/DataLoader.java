@@ -1,13 +1,7 @@
 package com.riri.displayresume.security;
 
-import com.riri.displayresume.model.Job;
-import com.riri.displayresume.model.Organization;
-import com.riri.displayresume.model.Role;
-import com.riri.displayresume.model.User;
-import com.riri.displayresume.repositories.JobRepo;
-import com.riri.displayresume.repositories.OrganizationRepo;
-import com.riri.displayresume.repositories.RoleRepository;
-import com.riri.displayresume.repositories.UserRepository;
+import com.riri.displayresume.model.*;
+import com.riri.displayresume.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,6 +18,8 @@ public class DataLoader implements CommandLineRunner {
     OrganizationRepo orgRepo;
     @Autowired
     JobRepo jobRepo;
+    @Autowired
+    SkillRepo skillRepo;
 
     @Override
     public void run(String...strings) throws Exception{
@@ -68,5 +64,16 @@ public class DataLoader implements CommandLineRunner {
 
         organ =new Organization("Sales", "Sales are amazing");
         orgRepo.save(organ);
+
+        Skill skill = new Skill("C",4);
+        skillRepo.save(skill);
+
+        skill = new Skill("PHP",5);
+        skillRepo.save(skill);
+
+        skill = new Skill("Matlab",5);
+        skillRepo.save(skill);
+
+
     }
 }

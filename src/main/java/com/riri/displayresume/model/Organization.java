@@ -15,8 +15,9 @@ public class Organization {
     private String orgDesc;
 
 
-    @OneToMany
-    @JoinColumn(name = "org_id") //which column on the job table tells jobs owned by the organization object
+    @OneToMany //owning side of the relationship
+    @JoinColumn(name = "org_id") //which column on the job table tells jobs owned by the organization object.
+    //The list will be populated by all items in Job class with this specific id org_id
     private Set<Job> jobs = new HashSet<>();
 
     public Organization() {
