@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th ="www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.tymeleaf.org/thymeleaf-extras-springsecurity4" >
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
@@ -21,7 +21,11 @@
 
 <div th:replace="fragments/base :: applicantnavbar"></div>
 
-<div class="riripacifico">Hola segniorita test</div>
+<div class="riripacifico">Resume Website building</div>
+
+
+
+<h3 sec:authorize="hasAuthority('RECRUITER')">Hi Recruiter you have right to add jobs, look at resumes and job posts</h3>
 
 <div class="container-fluid riripacifico">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec feugiat nisl pretium fusce id velit ut tortor pretium. Pretium nibh ipsum consequat nisl vel pretium lectus quam id. Magna etiam tempor orci eu. Semper auctor neque vitae tempus. Elit at imperdiet dui accumsan sit amet nulla facilisi. Senectus et netus et malesuada fames ac. Et malesuada fames ac turpis egestas. Eget est lorem ipsum dolor. Congue mauris rhoncus aenean vel elit scelerisque.

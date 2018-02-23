@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.tymeleaf.org/thymeleaf-extras-springsecurity4" >
+
 <head th:fragment="header">
     <meta charset="UTF-8"/>
     <title>Header fragment</title>
@@ -22,6 +23,9 @@
     </li>
 
 </div>
+
+
+
 
 
 <div th:fragment="applicantnavbar">
@@ -60,9 +64,11 @@
                 <a class="nav-link" href="/coverletter">Add Cover Letter</a>
             </li>
 
+            <div sec:authorize="hasAuthority('RECRUITER')">
             <li class="nav-item">
                 <a class="nav-link" href="/jobs/addjob">Add Job</a>
             </li>
+            </div>
 
             <li class="nav-item">
             <a class="nav-link" href="/jobs/displayjobs">Display Jobs</a>
