@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Print Resume</title>
+    <title>Add Skills</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
-
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Resume Builder</h1>
@@ -17,29 +16,23 @@
 
 <div th:replace="fragments/base :: applicantnavbar"></div>
 
+<form th:action="@{/addskilltoajob}" th:object="${form}" method="post">
+    <input type="hidden" th:field="*{id}"/>
 
-<div class="container riripacifico">
-    <h3>All Jobs</h3>
-    <table class="table table-striped">
-        <tr th:each="job :${jobs}">
+    <span th:if="${#fields.hasErrors('skillName')}" th:errors="*{skillName}"></span><br/>
+    <label>Skill Name: </label><input type="text" th:field="*{skillName}"/>
+    <br />
+    <span th:if="${#fields.hasErrors('skillLevel')}" th:errors="*{skillLevel}"></span><br/>
+    <label>Level(Integer values 1 to 5)e.g 1:beginner, 3 :intermediate, 5:proficient): </label><input type="text" th:field="*{skillLevel}"/>
 
-            <p th:text ="'Job Name: ' +${job.jobName}"> Job Name</p>
-            <div class="riripacifico"></div>
-            <p th:text ="'Job Description: ' +${job.jobDesc}">Job Description</p>
-            <p th:text="'Organization: ' +${job.org.getOrgName()}"></p>
-            <p><b>Required Skills</b></p>
-            <div th:each=" skill : ${job.skillsets}">
-                <p th:text="${skill.skillName}">One Skill</p>
-            </div>
+    <br />
+    <div class="controls">
+        <button type="submit" class="btn btn-success">Submit Skills</button>
+    </div>
+</form>
 
-
-        </tr>
-
-
-    </table>
-</div>
-
-
+<br />
+<a th:href="@{/addexperience}">Continue to Experiences</a>
 
 <div th:replace="fragments/base :: footer"></div>
 

@@ -17,7 +17,7 @@
 <div th:replace="fragments/base :: applicantnavbar"></div>
 
 <form th:action="@{/jobs/addjob}" th:object="${job}" method="post">
-    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{id}" />
 
     <div class="form-group">
 
@@ -45,6 +45,15 @@
         </select>
     </div>
 
+
+    <!--<div class="form-group">
+        <label th:for="type">Skills</label>
+        <select name="skillId">
+            <option th:each="reqskill : ${skillies}"
+                    th:value="${reqskill.id}" th:inline="text"> [[${reqskill.skillName}]]</option>
+        </select>
+    </div>
+-->
 
     <br />
     <div class="controls">

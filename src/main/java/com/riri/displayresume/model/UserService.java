@@ -42,13 +42,26 @@ public class UserService {
 
     public void saveUser(User user){
         // user.addRole(roleRepository.findByRole("USER"));
-        user.setRoles(Arrays.asList(roleRepository.findByRole("ADMIN")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("APPLICANT")));
         user.setEnabled(true);
 
         userRepository.save(user);
     }
     public void saveAdmin(User user){
-        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("ADMIN")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
+    public void saveEmployer(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("EMPLOYER")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
+
+    public void saveRecruiter(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("RECRUITER")));
         user.setEnabled(true);
         userRepository.save(user);
     }

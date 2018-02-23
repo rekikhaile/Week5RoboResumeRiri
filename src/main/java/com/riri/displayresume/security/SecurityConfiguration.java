@@ -33,16 +33,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
+
+                //allow to all
                 .antMatchers("/h2-console/**", "/css/**", "/images/**","/register").permitAll()
-/*
-                .antMatchers("/","/employerindex","/printletteremployer","/displayresumeemployer")
-*/              .antMatchers("/jobs/addjob", "/postskill", "/addskill","/jobs/displayjobs").hasAuthority("RECRUITER")
-                .antMatchers("/jobs/addjob", "/postskill", "/addskill","/jobs/displayjobs").hasAuthority("ADMIN")
-                .antMatchers( "/postskill", "/addskill").hasAuthority("EMPLOYER")
-                .antMatchers("/","/printletter","/displayresume")
-                .access("hasAuthority('USER') or hasAuthority('ADMIN')")
+                //allowed only to recruiter
+                .antMatchers("/jobs/addjob").hasAuthority("RECRUITER")
+                //allowed to all
+                .antMatchers("/","/postskill", "/addskill","/jobs/displayjobs","/printletter","/displayresume")
+                    .access("hasAuthority('ADMIN') or hasAuthority('RECRUITER') or hasAuthority('APPLICANT') or hasAuthority('EMPLOYER') ")
+                //allowed to Applicant and Admin
                 .antMatchers("/employerindex","/index","/addpersonal","/postpersonal","/addeducation","/posteducation","/addexperience",
-                        "/postexperience", "/addskill","/postskill","/addsummary","/addreference","/addview","/coverletter").access("hasAuthority('ADMIN')")
+                        "/postexperience", "/addsummary","/addreference","/addview",
+                        "/coverletter").access("hasAuthority('ADMIN') or hasAuthority('APPLICANT')")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

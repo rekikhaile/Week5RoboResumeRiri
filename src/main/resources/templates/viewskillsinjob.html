@@ -19,26 +19,35 @@
 
 
 <div class="container riripacifico">
-    <h3>All Jobs</h3>
+    <h3>SKILLS in job</h3>
     <table class="table table-striped">
-        <tr th:each="job :${jobs}">
+        <tr th:each="skill :${skillsinjob}">
 
-            <p th:text ="'Job Name: ' +${job.jobName}"> Job Name</p>
+            <p th:text ="'Skill Name: ' +${skill.skillName}"> Skill Name</p>
             <div class="riripacifico"></div>
-            <p th:text ="'Job Description: ' +${job.jobDesc}">Job Description</p>
-            <p th:text="'Organization: ' +${job.org.getOrgName()}"></p>
-            <p><b>Required Skills</b></p>
-            <div th:each=" skill : ${job.skillsets}">
-                <p th:text="${skill.skillName}">One Skill</p>
-            </div>
-
+            <p th:text ="'Skill Level: ' +${skill.skillLevel}">Skill Level</p>
 
         </tr>
-
 
     </table>
 </div>
 
+
+<!--<div class="container riripacifico">
+    <h3></h3>
+    <table class="table table-striped">
+        <tr th:each="skill :${skillies}">
+
+            <p th:text ="'Skill Name: ' +${skill.skillName}"> Job Name</p>
+            <div class="riripacifico"></div>
+            <p th:text ="'Skill Level: ' +${skill.skillLevel}">Job Description</p>
+            &lt;!&ndash;<p><a th:href="@{/displayjobs/{jobId}(id=${jobId})}">Display</a></p>&ndash;&gt;
+
+
+        </tr>
+
+    </table>
+</div>-->
 
 
 <div th:replace="fragments/base :: footer"></div>

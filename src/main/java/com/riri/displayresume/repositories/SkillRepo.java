@@ -9,7 +9,8 @@ import java.util.Set;
 public interface SkillRepo extends CrudRepository<Skill, Long> {
 
     Skill findSkillById(Long id);
-    //Set<Skill> findAllByJobs(Job job);
+   //Set<Skill> findAllByJobs(Job job);
+
 
 }
 

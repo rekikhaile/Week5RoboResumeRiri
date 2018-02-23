@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+/* @GetMapping("/addskilltoajob")// Menu is Job
+public String addSkillstoaJob(Model model,@RequestParam String jobId){
+Job thisjob = jobRepo.findOne(Long.parseLong(jobId));
+AddMenuItemForm form = new AddMenuItemForm(skillRepo.findAll(),thisjob);
+model.addAttribute("jobtitle", thisjob.getJobName());
+model.addAttribute("form",form);
+return "addjobform";
+}
+
+@PostMapping("/addskilltoajob")
+public String addSkillstoaJob(@ModelAttribute @Valid AddMenuItemForm form,
+BindingResult result, @RequestParam String orgId, Model model) {
+if (result.hasErrors()) {
+return "/addskilltoajob";
+}
+
+Skill theSkill = skillRepo.findOne(form.getSkillId());
+Job theJob = jobRepo.findOne(form.getJobId());
+//Job theJob = jobRepo.findOne(Long.parseLong(jobId));
+theJob.addSkill(theSkill);
+return "redirect:/displayjobs/" + theJob.getId();
+
+}
+
+@GetMapping("/jobsinorg")
+public String ajobsinOrganzation(Model model, @RequestParam long id){
+
+Organization org = orgRepo.findOne(id);
+Set<Job> jobs = org.getJobs(); // automatically populated as hibernate fetches from the database and to popukate
+    model.addAttribute("jobsinorgs",jobs ); //jobs in an organization
+    model.addAttribute("title","Jobs in Organization"+ org.getOrgName());
+    return "redirect:/";
+    }
+
+    @GetMapping("/skillsinajob") //contents os a single job
+    public String skillsinaJob(Model model, @RequestParam long id){
+
+    Job job = jobRepo.findOne(id);
+    Set<Skill> skills = job.getSkillsets(); // automatically populated as hibernate fetches from the database and to populate
+        model.addAttribute("skillsinjob",skills ); //skills in Job
+        model.addAttribute("title","Skills in Job "+ job.getJobName());
+        return "redirect:/";
+        }
+
+
+        @GetMapping("/removejob")
+        public String removeJobs(Model model){
+        model.addAttribute("jobstoremove",jobRepo.findAll());
+        return "/removejob";
+        }
+        @PostMapping("/removejob")
+        public String processRemoveJob(@RequestParam long[] ids) {
+        for(long id : ids) {
+        jobRepo.delete(id);
+        }
+        return "redirect:";
+        }
+        */
+</body>
+</html>
