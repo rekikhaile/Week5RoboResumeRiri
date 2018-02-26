@@ -244,11 +244,26 @@ public class ResumeController {
         return "employerprintresume";
     }
 
-    @RequestMapping("/register")
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String showRegistration(Model model){
         model.addAttribute("registration", new User());
         return "registration";
 
+    }
+
+    @RequestMapping(value = "/register" , method = RequestMethod.POST)
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
+                                          BindingResult result,
+                                          Model model){
+        model.addAttribute("user", user);
+        if(result.hasErrors()){
+            return "registration";
+        }else {
+            userService.saveUser(user);
+            model.addAttribute("message",
+                    "User Account successfully Created");
+        }
+        return "registrationconfirmation";
     }
 
     @RequestMapping("/login")

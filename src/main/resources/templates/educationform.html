@@ -17,7 +17,7 @@
 <div th:replace="fragments/base :: applicantnavbar"></div>
 
 
-
+<div class="ririleftpads">
 <form th:action="@{/posteducation}" th:object="${education}" method="post">
     <input type="hidden" th:field="*{id}"/>
 
@@ -31,8 +31,9 @@
     <div class="controls">
         <button type="submit" class="btn btn-success">Submit Education info</button>
     </div>
-
 </form>
+</div>
+
 <br />
 <a th:href="@{/addskill}"><input type="button" value="Continue to Skills"/></a>
 <br />
